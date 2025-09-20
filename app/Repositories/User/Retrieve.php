@@ -80,8 +80,12 @@ class Retrieve extends BaseRepository
     {
         $this->leftJoinAccount();
 
+        // AJUSTE: erro de SQL injection nas buscas, usar diretamente where do laravel ao invés de whereRaw ou usar Sanitizer.
+        // Exemplo: $this->builder->where('name', 'like', '%' . $this->name . '%');
+        // $this->name  = Sanitizer::sanitize($this->name, 'string');
+        // $this->email = Sanitizer::sanitize($this->email, 'string');
         if ($this->name) {
-            $this->builder->whereRaw("name LIKE '%" . $this->name . "%'");
+            $this->builder->where("name LIKE '%" . $this->name . "%'");
         }
 
         if ($this->email) {

@@ -37,6 +37,7 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
+    // AJUSTE:  
     public function register(RegisterRequest $request): JsonResponse
     {
         $params = new CreateFirstUserParams(
@@ -48,6 +49,7 @@ class UserController extends Controller
             $request->password
         );
 
+        // AJUSTE: Pode ser alterado o modo de chamada para: $response = (new CreateFirstUser($params))->handle();
         $useCase  = new CreateFirstUser($params);
         $response = $useCase->handle();
 

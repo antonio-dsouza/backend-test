@@ -53,6 +53,7 @@ trait SanitizesInput
     {
         $filters = Arr::dot(Arr::only(Arr::undot($filters), array_keys($this->input())));
 
+        // AJUSTE: Classe Sanitizer não existe, é necessário instalar a biblioteca
         $this->sanitizer = Sanitizer::make($this->input(), $filters);
 
         // Codigo para manter apenas os inputs pré existentes na request passados

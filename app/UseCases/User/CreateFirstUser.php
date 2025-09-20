@@ -114,6 +114,10 @@ class CreateFirstUser extends BaseUseCase
      */
     public function handle()
     {
+        // AJUSTE: Aqui o usecases está tendo duas responsabilidades, está criando company e user, porém se o user der erro
+        // a company já terá sido criada, o ideal seria criar uma transaction para garantir que ou tudo é criado ou nada é criado.
+        // Outra abordagem seria separar em dois usecases distintos, um para criar a company e outro para criar o user.
+        // Exemplo: DB::transaction(function () { ... }); ou DB::beginTransaction(); ... DB::commit(); DB::rollBack();
         try {
             $companyDomain = $this->validateCompany();
             $this->createCompany($companyDomain);

@@ -163,7 +163,8 @@ trait Logger
             $level
         );
 
-        dump($exception);
+        // AJUSTE: esquecido dump de exception.
+        // dump($exception);
 
         // Para evitar propagação de log duplicado, o erro é propagado como
         // BaseException
